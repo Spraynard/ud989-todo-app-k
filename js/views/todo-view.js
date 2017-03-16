@@ -49,9 +49,12 @@ var app = app || {};
 			}
 
 			this.$el.html(this.template(this.model.toJSON()));
+			console.log(this.model.toJSON())
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');
+			// Additions
+			this.done = $('.done')
 			return this;
 		},
 
@@ -65,9 +68,12 @@ var app = app || {};
 				app.TodoFilter === 'completed';
 		},
 
-		// Toggle the `"completed"` state of the model.
+		// Toggle the `"completed"` state of the model. This controls the addition of "--done"
 		toggleCompleted: function () {
 			this.model.toggle();
+			this.model.get('completed') ?
+				this.model.save({'done' : '--done'}) :
+				this.model.save({'done' : ''})
 		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.
