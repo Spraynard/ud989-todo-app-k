@@ -71,9 +71,6 @@ var app = app || {};
 		// Toggle the `"completed"` state of the model. This controls the addition of "--done"
 		toggleCompleted: function () {
 			this.model.toggle();
-			this.model.get('completed') ?
-				this.model.save({'done' : '--done'}) :
-				this.model.save({'done' : ''})
 		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.

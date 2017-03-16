@@ -14,7 +14,6 @@ var app = app || {};
 		defaults: {
 			title: '',
 			completed: false,
-			done: ''
 		},
 
 		// Toggle the `completed` state of this todo item.
