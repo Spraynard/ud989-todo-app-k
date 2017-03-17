@@ -15,7 +15,8 @@ var app = app || {};
 			title: '',
 			completed: false,
 			//Adding 'Priority' to each todo object
-			priority: false
+			priority: false,
+			highPriority: false
 		},
 
 		// Toggle the `completed` state of this todo item.
@@ -28,8 +29,15 @@ var app = app || {};
 		// Toggle the Priority state of this todo item.
 		togglePriority: function() {
 			this.save({
-				priority : !this.get('priority')
+				priority: !this.get('priority')
 			});
+		},
+
+		// Toggle the `High Priority` state of this todo item
+		toggleHighPriority: function () {
+			this.save({
+				highPriority: !this.get('highPriority')
+			})
 		}
 	});
 })();

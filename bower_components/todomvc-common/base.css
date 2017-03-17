@@ -223,6 +223,37 @@ label[for='toggle-all'] {
 	appearance: none;
 }
 
+#header .header-priority-btn {
+	display: none;
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	top: 10px;
+	left: 34px;
+	padding: 0 4px;
+	background-color: #fcfcfc;
+	/*color: #d00;*/
+	z-index: 10;
+	/* Mobile Safari */
+	border: 1px solid black;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
+#header #new-todo.priority {
+	background: #d66;
+}
+
+#header:hover .header-priority-btn {
+	display: inline-block;
+}
+
+#header .header-priority-btn:after {
+	content: '!';
+}
+
 #todo-list li .priority-btn {
 	display: none;
 	height: auto;
@@ -250,6 +281,33 @@ label[for='toggle-all'] {
 	content: '!';
 }
 
+#todo-list li .high-priority-btn {
+	display: none;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50px;
+	padding: 0 4px;
+	background-color: #fcfcfc;
+	/*color: #d00;*/
+	z-index: 10;
+	/* Mobile Safari */
+	border: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
+#todo-list li:hover .high-priority-btn {
+	display: block;
+}
+
+#todo-list li .high-priority-btn:after {
+	content: '!!';
+}
+
 #todo-list li .toggle:after {
 	content: '✔';
 	/* 40 + a couple of pixels visual adjustment */
@@ -260,7 +318,7 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .toggle:checked:after {
-	color: red;
+	color:	red;
 	text-shadow: 0 1px 0 #669991;
 	bottom: 1px;
 	position: relative;
@@ -279,16 +337,27 @@ label[for='toggle-all'] {
 
 /*THIS CONTROLS WHAT THE TEXT LOOKS LIKE AFTER IT IS "COMPLETED"*/
 #todo-list li.completed label {
-	color: red;
+	color: 	#808080;
 	text-decoration: line-through;
 }
 
+/* CSS for Priority button functionality on a currently made todo*/
 #todo-list li.priority:not(.completed) label {
 	color: #d66;
 }
 
 #todo-list li.priority .priority-btn:after {
 	color: #d66;
+}
+
+	/*CONTROLS HIGH PRIORITY TEXT COLOR AND BACKGROUND COLOR OF LABEL*/
+#todo-list li.high-priority .high-priority-btn:after {
+	color: #dc143c ;
+}
+
+#todo-list li.high-priority:not(.completed) label {
+	color: white;
+	background: #dc143c;
 }
 
 #todo-list li .destroy,

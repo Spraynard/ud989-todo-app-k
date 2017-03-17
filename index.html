@@ -8,8 +8,12 @@
 	<body>
 		<section id="todoapp">
 			<header id="header">
+			<div>
 				<h1>todos</h1>
+				<!-- Adding priority functionality to the new todo maker -->
+				<button class="header-priority-btn"></button>
 				<input id="new-todo" placeholder="What needs to be done?" autofocus>
+			</div>
 			</header>
 			<section id="main">
 				<input id="toggle-all" type="checkbox">
@@ -27,6 +31,7 @@
 		<script type="text/template" id="item-template">
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+				<button class="high-priority-btn"></button>
 				<button class="priority-btn"></button>
 				<label><%- title %><%= completed ? ' __done!' : '' %></label>
 				<!-- Adding an Edit Button -->
@@ -47,6 +52,10 @@
 				</li>
 				<li>
 					<a href="#/completed">Completed</a>
+				</li>
+				<!-- Addition of Priority Filter -->
+				<li>
+					<a href="#/priority">Priority</a>
 				</li>
 			</ul>
 			<% if (completed) { %>

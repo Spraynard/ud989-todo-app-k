@@ -21,7 +21,8 @@ var app = app || {};
 		events: {
 			'keypress #new-todo': 'createOnEnter',
 			'click #clear-completed': 'clearCompleted',
-			'click #toggle-all': 'toggleAllComplete'
+			'click #toggle-all': 'toggleAllComplete',
+			'click .header-priority-btn': 'toggleHeaderPriority'
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -95,20 +96,32 @@ var app = app || {};
 		},
 
 		// Generate the attributes for a new Todo item.
-		newAttributes: function () {
+		newAttributes: function (priorityBool) {
 			return {
 				title: this.$input.val().trim(),
 				order: app.todos.nextOrder(),
-				completed: false
+				completed: false,
+				priority: priorityBool
 			};
 		},
 
+		toggleHeaderPriority: function () {
+			this.$input.toggleClass('priority', !this.isPriority())
+			this.$input.focus();
+		},
+
+		isPriority: function () {
+			return this.$input.hasClass('priority')
+		},
 		// If you hit return in the main input field, create new **Todo** model,
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes());
+				app.todos.create(this.newAttributes(this.isPriority()));
 				this.$input.val('');
+				if (this.$input.hasClass('priority')) {
+					this.toggleHeaderPriority();
+				}
 			}
 		},
 

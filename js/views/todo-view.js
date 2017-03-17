@@ -21,8 +21,9 @@ var app = app || {};
 			// Adding Edit Button Functionality
 			'click .edit-btn': 'edit',
 			'dblclick label': 'edit',
-			// Adding Priority Button
+			// Adding Priority Button Functionality
 			'click .priority-btn': 'togglePriority',
+			'click .high-priority-btn': 'toggleHighPriority',
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
@@ -53,9 +54,9 @@ var app = app || {};
 			}
 
 			this.$el.html(this.template(this.model.toJSON()));
-			console.log(this.model.toJSON())
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.$el.toggleClass('priority', this.model.get('priority'));
+			this.$el.toggleClass('high-priority', this.model.get('highPriority'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			// Additions
@@ -70,7 +71,17 @@ var app = app || {};
 		isHidden: function () {
 			return this.model.get('completed') ?
 				app.TodoFilter === 'active' :
-				app.TodoFilter === 'completed';
+				app.TodoFilter === 'completed'
+			//Rewriting code to work with priority
+		},
+
+		// Toggle the '"priority"' state of the model.
+		togglePriority: function () {
+			this.model.togglePriority();
+		},
+
+		toggleHighPriority: function () {
+			this.model.toggleHighPriority();
 		},
 
 		// Toggle the `"completed"` state of the model. This controls the addition of "--done"
@@ -136,9 +147,5 @@ var app = app || {};
 		clear: function () {
 			this.model.destroy();
 		},
-
-		togglePriority: function () {
-			this.model.togglePriority();
-		}
 	});
 })(jQuery);
